@@ -1,8 +1,6 @@
 <template>
-  <div>hello world</div>
+  <div>
+    <h1>hello world</h1>
+    <UColorModeButton />
+  </div>
 </template>
-
-<script setup lang="ts">
-// let a = ''
-// a = 0
-</script>
