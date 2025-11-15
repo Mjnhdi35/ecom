@@ -2,24 +2,145 @@
 @import '@nuxt/ui';
 
 @theme {
-  --font-sans: 'Public Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* Font families */
+  --font-sans:
+    'Public Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New',
+    monospace;
 
+  /* Responsive breakpoints - Extended for large screens */
   --breakpoint-3xl: 1920px;
   --breakpoint-4xl: 2560px;
   --breakpoint-5xl: 3840px;
 
+  /* Container sizes */
   --container-8xl: 90rem;
+
+  /* Custom Brand Colors - Primary Green Palette */
+  --color-primary-50: #e6f7e8;
+  --color-primary-100: #ccefd1;
+  --color-primary-200: #99dfa3;
+  --color-primary-300: #66cf75;
+  --color-primary-400: #33bf47;
+  --color-primary-500: #00b207;
+  --color-primary-600: #008e06;
+  --color-primary-700: #006b04;
+  --color-primary-800: #2c742f;
+  --color-primary-900: #003602;
+  --color-primary-950: #001b01;
+
+  /* Soft Primary */
+  --color-soft-primary-50: #f0fbf1;
+  --color-soft-primary-100: #d9f5db;
+  --color-soft-primary-200: #c2efc5;
+  --color-soft-primary-300: #abe9af;
+  --color-soft-primary-400: #94e399;
+  --color-soft-primary-500: #84d187;
+  --color-soft-primary-600: #6aa76d;
+  --color-soft-primary-700: #507d53;
+  --color-soft-primary-800: #365339;
+  --color-soft-primary-900: #1c291d;
+  --color-soft-primary-950: #0e150f;
+
+  /* Hard Primary */
+  --color-hard-primary-50: #e8f3e9;
+  --color-hard-primary-100: #d1e7d3;
+  --color-hard-primary-200: #a3cfa7;
+  --color-hard-primary-300: #75b77b;
+  --color-hard-primary-400: #479f4f;
+  --color-hard-primary-500: #2c742f;
+  --color-hard-primary-600: #235d26;
+  --color-hard-primary-700: #1a461c;
+  --color-hard-primary-800: #122f13;
+  --color-hard-primary-900: #09180a;
+  --color-hard-primary-950: #050c05;
+
+  /* Warning Orange */
+  --color-warning-50: #fff4e6;
+  --color-warning-100: #ffe9cc;
+  --color-warning-200: #ffd399;
+  --color-warning-300: #ffbd66;
+  --color-warning-400: #ffa733;
+  --color-warning-500: #ff8a00;
+  --color-warning-600: #cc6e00;
+  --color-warning-700: #995300;
+  --color-warning-800: #663700;
+  --color-warning-900: #331c00;
+  --color-warning-950: #1a0e00;
+
+  /* Danger Red */
+  --color-danger-50: #fdeaea;
+  --color-danger-100: #fbd5d5;
+  --color-danger-200: #f7abab;
+  --color-danger-300: #f38181;
+  --color-danger-400: #ef5757;
+  --color-danger-500: #ea4b48;
+  --color-danger-600: #bb3c3a;
+  --color-danger-700: #8c2d2b;
+  --color-danger-800: #5e1e1d;
+  --color-danger-900: #2f0f0e;
+  --color-danger-950: #180807;
+
+  /* Custom Gray Scale */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  /* Green Gray Scale */
+  --color-green-gray-50: #f5f7f5;
+  --color-green-gray-100: #ebefeb;
+  --color-green-gray-200: #d7dfd7;
+  --color-green-gray-300: #c3cfc3;
+  --color-green-gray-400: #afbfaf;
+  --color-green-gray-500: #9baf9b;
+  --color-green-gray-600: #7c8f7c;
+  --color-green-gray-700: #5d6f5d;
+  --color-green-gray-800: #3e4f3e;
+  --color-green-gray-900: #1f2f1f;
+  --color-green-gray-950: #0f180f;
 }
 
+/* Base HTML and Box Model Reset */
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Base styles with smooth color mode transitions */
 :root {
+  color-scheme: light;
+
+  /* UI Color tokens - Light mode */
   --ui-primary: var(--ui-color-primary-500);
   --ui-secondary: var(--ui-color-secondary-500);
   --ui-success: var(--ui-color-success-500);
   --ui-info: var(--ui-color-info-500);
-  --ui-warning: var(--ui-color-warning-500);
-  --ui-error: var(--ui-color-error-500);
+  --ui-warning: var(--color-warning-500);
+  --ui-error: var(--color-danger-500);
 
+  /* Custom brand colors */
+  --ui-soft-primary: var(--color-soft-primary-500);
+  --ui-hard-primary: var(--color-hard-primary-500);
+
+  /* Text colors - Light mode */
   --ui-text-dimmed: var(--ui-color-neutral-400);
   --ui-text-muted: var(--ui-color-neutral-500);
   --ui-text-toned: var(--ui-color-neutral-600);
@@ -27,32 +148,42 @@
   --ui-text-highlighted: var(--ui-color-neutral-900);
   --ui-text-inverted: white;
 
+  /* Background colors - Light mode */
   --ui-bg: white;
   --ui-bg-muted: var(--ui-color-neutral-50);
   --ui-bg-elevated: var(--ui-color-neutral-100);
   --ui-bg-accented: var(--ui-color-neutral-200);
   --ui-bg-inverted: var(--ui-color-neutral-900);
 
+  /* Border colors - Light mode */
   --ui-border: var(--ui-color-neutral-200);
   --ui-border-muted: var(--ui-color-neutral-200);
   --ui-border-accented: var(--ui-color-neutral-300);
   --ui-border-inverted: var(--ui-color-neutral-900);
 
+  /* Other tokens */
   --ui-radius: 0.25rem;
-
   --ui-container: var(--container-8xl);
-
-  --ui-header-height: --spacing(24);
+  --ui-header-height: 6rem;
 }
 
+/* Dark mode styles */
 .dark {
+  color-scheme: dark;
+
+  /* UI Color tokens - Dark mode */
   --ui-primary: var(--ui-color-primary-400);
   --ui-secondary: var(--ui-color-secondary-400);
   --ui-success: var(--ui-color-success-400);
   --ui-info: var(--ui-color-info-400);
-  --ui-warning: var(--ui-color-warning-400);
-  --ui-error: var(--ui-color-error-400);
+  --ui-warning: var(--color-warning-400);
+  --ui-error: var(--color-danger-400);
 
+  /* Custom brand colors - Dark mode */
+  --ui-soft-primary: var(--color-soft-primary-400);
+  --ui-hard-primary: var(--color-hard-primary-400);
+
+  /* Text colors - Dark mode */
   --ui-text-dimmed: var(--ui-color-neutral-500);
   --ui-text-muted: var(--ui-color-neutral-400);
   --ui-text-toned: var(--ui-color-neutral-300);
@@ -60,18 +191,62 @@
   --ui-text-highlighted: white;
   --ui-text-inverted: var(--ui-color-neutral-900);
 
+  /* Background colors - Dark mode */
   --ui-bg: var(--ui-color-neutral-900);
   --ui-bg-muted: var(--ui-color-neutral-800);
   --ui-bg-elevated: var(--ui-color-neutral-800);
   --ui-bg-accented: var(--ui-color-neutral-700);
   --ui-bg-inverted: white;
 
+  /* Border colors - Dark mode */
   --ui-border: var(--ui-color-neutral-800);
   --ui-border-muted: var(--ui-color-neutral-700);
   --ui-border-accented: var(--ui-color-neutral-700);
   --ui-border-inverted: white;
 }
 
+/* Base body styles - Nuxt UI 4.1 standard */
 body {
   @apply antialiased text-default bg-default scheme-light dark:scheme-dark;
+
+  /* Smooth color mode transitions */
+  transition-property: background-color, color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transitions for interactive elements */
+a,
+button,
+input,
+select,
+textarea {
+  transition-property:
+    background-color, color, border-color, opacity, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exclude media elements from transitions for performance */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  transition: none;
+}
+
+/* Responsive image defaults */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 2px;
 }
