@@ -7,9 +7,19 @@
     "e-commerce"
   ],
   "author": "smoothie",
-  "license": "ISC",
   "packageManager": "pnpm@10.22.0",
+  "scripts": {
+    "format": "prettier \"{apps,libs}/**/*.{ts,tsx,vue,js,json}\" --ignore-path .gitignore",
+    "format:check": "pnpm format --check",
+    "format:write": "pnpm format --write",
+    "tsc": "pnpm nx run-many -t tsc",
+    "lint": "pnpm nx run-many -t lint",
+    "build": "pnpm nx run-many -t build",
+    "valid": "pnpm format:write && pnpm lint && pnpm tsc && pnpm build"
+  },
   "devDependencies": {
+    "nx": "22.0.3",
+    "prettier": "^3.6.2",
     "typescript": "^5.9.3"
   }
 }
