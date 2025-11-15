@@ -1,0 +1,15 @@
+{
+  "name": "ecom",
+  "version": "1.0.0",
+  "description": "e-commerce monorepo",
+  "private": true,
+  "keywords": [
+    "e-commerce"
+  ],
+  "author": "smoothie",
+  "license": "ISC",
+  "packageManager": "pnpm@10.22.0",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
