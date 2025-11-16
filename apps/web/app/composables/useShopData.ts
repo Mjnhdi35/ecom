@@ -1,0 +1,108 @@
+import type { Product } from './useMockData'
+
+export const useShopData = () => {
+  const shopProducts: Product[] = [
+    {
+      id: 1,
+      name: 'Big Potatos',
+      image: '/assets/images/tomato.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 25,
+    },
+    {
+      id: 2,
+      name: 'Chanise Cabbage',
+      image: '/assets/images/green-lettuce.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 30,
+    },
+    {
+      id: 3,
+      name: 'Ladies Finger (Corn)',
+      image: '/assets/images/cauliflower.png',
+      price: 20.99,
+      originalPrice: 14.99,
+      rating: 5,
+      reviewCount: 20,
+      badge: 'Out of Stock',
+    },
+    {
+      id: 4,
+      name: 'Eggplant',
+      image: '/assets/images/eggplant.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 22,
+    },
+    {
+      id: 5,
+      name: 'Fresh Cauliflower',
+      image: '/assets/images/cauliflower.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 28,
+    },
+    {
+      id: 6,
+      name: 'Green Apple',
+      image: '/assets/images/green-apple.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 35,
+    },
+    {
+      id: 7,
+      name: 'Green Capsicum',
+      image: '/assets/images/tomato.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 40,
+    },
+    {
+      id: 8,
+      name: 'Green Chili',
+      image: '/assets/images/green-chilli.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 50,
+    },
+    {
+      id: 9,
+      name: 'Green Cucumber',
+      image: '/assets/images/tomato.png',
+      price: 20.99,
+      originalPrice: 14.99,
+      rating: 5,
+      reviewCount: 38,
+      badge: 'Sale 50%',
+    },
+    {
+      id: 10,
+      name: 'Green Littuce',
+      image: '/assets/images/green-lettuce.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 42,
+    },
+    {
+      id: 11,
+      name: 'Ladies Finger (Okra)',
+      image: '/assets/images/green-chilli.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 25,
+    },
+    {
+      id: 12,
+      name: 'Green Capsicum (Red)',
+      image: '/assets/images/tomato.png',
+      price: 14.99,
+      rating: 5,
+      reviewCount: 30,
+    },
+  ]
+
+  return { shopProducts }
+}
