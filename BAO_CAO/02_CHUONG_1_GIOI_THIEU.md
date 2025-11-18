@@ -122,18 +122,63 @@ Luận văn sử dụng các phương pháp nghiên cứu sau:
    - Tổng hợp kiến thức từ nhiều nguồn
    - Đánh giá và rút ra kết luận
 
-## 1.5. Cấu Trúc Luận Văn
+## 1.4. Khảo Sát Hiện Trạng
 
-Luận văn được tổ chức thành các chương như sau:
+### 1.4.1. Về Phía Người Nông Dân
 
-- **Chương 1: Giới thiệu**: Trình bày bối cảnh, vấn đề nghiên cứu, mục tiêu, đối tượng và phạm vi nghiên cứu.
+- **Phụ thuộc lớn vào thương lái**: Dẫn đến giá cả bấp bênh và lợi nhuận không ổn định. Người nông dân thường phải bán sản phẩm với giá thấp do phải đi qua nhiều khâu trung gian.
 
-- **Chương 2: Cơ sở lý thuyết**: Trình bày các kiến thức nền tảng về các công nghệ được sử dụng, nguyên tắc thiết kế phần mềm, và design patterns.
+- **Gặp khó khăn trong việc xây dựng thương hiệu cá nhân**: Không có công cụ để tiếp cận trực tiếp các thị trường lớn hơn và xây dựng thương hiệu cho sản phẩm của mình.
 
-- **Chương 3: Phân tích và thiết kế hệ thống**: Trình bày phân tích yêu cầu, thiết kế kiến trúc tổng thể, và thiết kế chi tiết các thành phần của hệ thống.
+- **Thiếu các công cụ số**: Không có hệ thống để quản lý sản lượng, theo dõi đơn hàng và tương tác với khách hàng một cách chuyên nghiệp.
 
-- **Chương 4: Triển khai hệ thống**: Trình bày quá trình triển khai các thành phần của hệ thống, bao gồm backend, frontend, database, và các cơ chế bảo mật.
+### 1.4.2. Về Phía Người Tiêu Dùng
 
-- **Chương 5: Kết quả và đánh giá**: Trình bày kết quả triển khai, đánh giá hiệu suất, chất lượng mã nguồn, và bảo mật của hệ thống.
+- **Tồn tại tâm lý lo ngại về chất lượng**: Người tiêu dùng lo ngại về độ an toàn và nguồn gốc xuất xứ của nông sản, đặc biệt là các sản phẩm tươi sống.
 
-- **Kết luận và hướng phát triển**: Tóm tắt các kết quả đạt được, đóng góp của luận văn, và đề xuất hướng phát triển tương lai.
+- **Giá thành sản phẩm cao**: Giá thành sản phẩm thường bị đẩy lên cao do phải đi qua nhiều khâu phân phối trung gian.
+
+- **Trải nghiệm mua sắm hạn chế**: Trải nghiệm mua sắm nông sản trực tuyến còn nhiều hạn chế, thiếu thông tin minh bạch và các tiện ích hỗ trợ.
+
+### 1.4.3. Các Giải Pháp Hiện Có Trên Thị Trường
+
+- **Các sàn TMĐT lớn (Shopee, Lazada, Tiki)**: Đây là các sàn đa ngành hàng, không chuyên biệt cho nông sản, dẫn đến khó khăn trong việc kiểm soát chất lượng và quy trình bảo quản. Phí hoa hồng và chi phí vận hành cũng là một rào cản.
+
+- **Mạng xã hội (Facebook, Zalo)**: Các giao dịch diễn ra một cách tự phát, thiếu sự tin cậy, không có hệ thống quản lý đơn hàng, thanh toán và giải quyết khiếu nại một cách chuyên nghiệp.
+
+- **Một số website TMĐT nông sản chuyên biệt**: Đã có một vài dự án nhưng quy mô còn nhỏ, công nghệ chưa thực sự hiện đại, và trải nghiệm người dùng chưa được tối ưu.
+
+## 1.5. Giới Thiệu Đơn Vị Thực Tập
+
+### 1.5.1. Tổng Quan Về Đơn Vị Thực Tập
+
+CÔNG TY TNHH TIN HỌC AN VẠN AN là một doanh nghiệp hoạt động trong lĩnh vực bán lẻ sản phẩm công nghệ và thiết bị điện tử thông qua kênh thương mại điện tử. Trong giai đoạn chuyển đổi số, đơn vị hướng đến mục tiêu chuẩn hóa nền tảng kỹ thuật, xây dựng hệ thống bán hàng trực tuyến ổn định – bảo mật – linh hoạt, và từng bước mở rộng quy mô kinh doanh ra thị trường trong nước và quốc tế.
+
+Với tầm nhìn trở thành một nền tảng bán lẻ công nghệ hiện đại, "Fresh Shop" tập trung đầu tư vào việc xây dựng hạ tầng phần mềm nội bộ thay vì phụ thuộc vào giải pháp đóng gói sẵn. Điều này giúp hệ thống chủ động hơn trong việc tùy biến giao diện, quản lý dữ liệu, tối ưu trải nghiệm người dùng, cũng như đảm bảo an toàn và hiệu năng trong quá trình vận hành.
+
+### 1.5.2. Các Sản Phẩm Của Đơn Vị Thực Tập
+
+Hệ sinh thái công nghệ của Fresh Shop được định hướng xây dựng theo mô hình đa tầng – tách biệt frontend và backend, bao gồm ba nhóm sản phẩm chính:
+
+- **Website bán hàng (Fresh Shop Web)**: Được phát triển bằng Nuxt 4, cung cấp giao diện cửa hàng trực tuyến thân thiện, tốc độ tải nhanh, tối ưu SEO và khả năng truy cập (A11y). Cho phép người dùng duyệt danh mục, tìm kiếm sản phẩm, thêm vào giỏ hàng, đăng nhập và xem tin tức/bài viết.
+
+- **Hệ thống API trung tâm (Fresh Shop API)**: Xây dựng bằng NestJS + TypeORM + PostgreSQL + Redis, đóng vai trò dịch vụ dữ liệu (data service layer). Cung cấp các endpoint RESTful phục vụ website, ứng dụng di động và các đối tác tích hợp. Hỗ trợ JWT authentication, guard toàn cục, rate limiting, health check, và Swagger documentation cho việc quản lý và mở rộng API sau này.
+
+- **Công cụ quản trị nội bộ (Admin Dashboard – dự kiến mở rộng)**: Hệ thống quản trị nội bộ phục vụ quản lý sản phẩm, danh mục, đơn hàng, và nội dung bài viết. Kết nối trực tiếp với API trung tâm để đồng bộ dữ liệu thời gian thực, đảm bảo quản lý hiệu quả và bảo mật.
+
+Trong phạm vi đề tài hiện tại, dự án tập trung triển khai hai thành phần chính:
+
+- Frontend (Nuxt Web): giao diện thương mại điện tử cho người dùng cuối.
+- Backend (NestJS API): lớp dịch vụ dữ liệu, cung cấp nền tảng ổn định để mở rộng trong tương lai sang ứng dụng di động và dashboard quản trị.
+
+## 1.6. Cấu Trúc Luận Văn
+
+Báo cáo được tổ chức thành bốn chương chính, cùng với các phụ lục nhằm giúp người đọc dễ dàng tra cứu, triển khai và đánh giá hệ thống:
+
+- **Chương 1. Tổng quan**: Trình bày lý do chọn đề tài, mục tiêu, phạm vi, phương pháp nghiên cứu, giới thiệu đơn vị thực tập và cấu trúc báo cáo.
+
+- **Chương 2. Nội dung thực tập**: Mô tả môi trường làm việc, các công việc đã thực hiện trong quá trình thực tập, cùng kỹ năng và công nghệ được áp dụng.
+
+- **Chương 3. Thực hiện dự án "Fresh Shop"**: Phân tích yêu cầu hệ thống, thiết kế kiến trúc, quy trình cài đặt, kiểm thử và triển khai thực tế. Phần này là trọng tâm của báo cáo, mô tả chi tiết cách ứng dụng các công nghệ vào dự án.
+
+- **Chương 4. Kết luận và hướng phát triển**: Tổng kết kết quả đạt được, đánh giá tính khả thi và đề xuất hướng mở rộng hệ thống trong tương lai.

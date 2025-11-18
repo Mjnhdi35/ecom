@@ -305,6 +305,245 @@ NestJS sử dụng metadata-driven architecture, nơi decorators add metadata v�
 - **Providers/Services**: Chứa business logic
 - **Repositories**: Truy cập dữ liệu
 
+**Guards - Bảo Vệ:**
+
+Guards là các classes được sử dụng để kiểm soát quyền truy cập vào routes và handlers trong NestJS. Guards được thực thi sau middleware nhưng trước interceptors và pipes.
+
+**Chức năng của Guards:**
+
+- **Authentication**: Xác thực người dùng có đăng nhập hay không
+- **Authorization**: Kiểm tra quyền truy cập của người dùng đến tài nguyên cụ thể
+- **Role-based Access Control**: Kiểm soát truy cập dựa trên vai trò của người dùng
+- **Conditional Logic**: Thực thi logic điều kiện trước khi cho phép truy cập handler
+
+**Guard Execution Flow:**
+
+Guards được thực thi theo thứ tự:
+
+1. Global guards (được đăng ký ở app level)
+2. Controller guards (được đăng ký ở controller level)
+3. Route guards (được đăng ký ở route handler level)
+
+**Guard Return Values:**
+
+- **true**: Cho phép request tiếp tục đến handler
+- **false**: Từ chối request và trả về 403 Forbidden
+- **Exception**: Throw exception để trả về error response tùy chỉnh
+
+**Pipes - Ống Dẫn:**
+
+Pipes là các classes được sử dụng để transform và validate dữ liệu trong NestJS. Pipes được thực thi sau guards nhưng trước route handler.
+
+**Chức năng của Pipes:**
+
+- **Transformation**: Chuyển đổi dữ liệu từ một format sang format khác (ví dụ: string sang number)
+- **Validation**: Kiểm tra tính hợp lệ của dữ liệu đầu vào
+- **Type Conversion**: Tự động chuyển đổi kiểu dữ liệu
+- **Data Sanitization**: Làm sạch và chuẩn hóa dữ liệu
+
+**Built-in Pipes:**
+
+- **ValidationPipe**: Validate dữ liệu dựa trên decorators và class-validator
+- **ParseIntPipe**: Parse string thành integer
+- **ParseFloatPipe**: Parse string thành float
+- **ParseBoolPipe**: Parse string thành boolean
+- **ParseArrayPipe**: Parse và validate arrays
+- **ParseUUIDPipe**: Validate UUID format
+- **DefaultValuePipe**: Cung cấp giá trị mặc định nếu giá trị không tồn tại
+
+**Pipe Execution:**
+
+Pipes được thực thi theo thứ tự:
+
+1. Global pipes
+2. Controller pipes
+3. Route pipes
+4. Parameter pipes (cho từng parameter cụ thể)
+
+**Interceptors - Bộ Chặn:**
+
+Interceptors là các classes được sử dụng để thêm logic bổ sung vào request/response cycle trong NestJS. Interceptors được thực thi sau guards và pipes, và có thể can thiệp vào cả trước và sau khi route handler được gọi.
+
+**Chức năng của Interceptors:**
+
+- **Logging**: Ghi log requests và responses
+- **Caching**: Cache responses để tăng hiệu suất
+- **Error Handling**: Xử lý và transform errors
+- **Response Transformation**: Thay đổi format của response
+- **Performance Monitoring**: Đo lường thời gian thực thi
+- **Request/Response Modification**: Thay đổi request hoặc response data
+
+**Interceptor Execution Flow:**
+
+1. **Before Handler**: Logic được thực thi trước khi route handler được gọi
+2. **Handler Execution**: Route handler được thực thi
+3. **After Handler**: Logic được thực thi sau khi route handler hoàn thành
+4. **Response Transformation**: Response có thể được transform trước khi gửi về client
+
+**Exception Filters - Bộ Lọc Ngoại Lệ:**
+
+Exception Filters là các classes được sử dụng để xử lý exceptions được throw trong NestJS application. Exception filters cho phép kiểm soát cách errors được trả về cho client.
+
+**Chức năng của Exception Filters:**
+
+- **Error Formatting**: Định dạng error response theo chuẩn nhất quán
+- **Error Logging**: Ghi log errors để debugging
+- **Error Transformation**: Chuyển đổi errors thành format phù hợp
+- **HTTP Status Codes**: Set appropriate HTTP status codes
+- **Error Messages**: Cung cấp error messages có ý nghĩa cho client
+
+**Built-in Exceptions:**
+
+- **BadRequestException**: 400 Bad Request
+- **UnauthorizedException**: 401 Unauthorized
+- **ForbiddenException**: 403 Forbidden
+- **NotFoundException**: 404 Not Found
+- **MethodNotAllowedException**: 405 Method Not Allowed
+- **NotAcceptableException**: 406 Not Acceptable
+- **ConflictException**: 409 Conflict
+- **GoneException**: 410 Gone
+- **HttpVersionNotSupportedException**: 505 HTTP Version Not Supported
+- **PayloadTooLargeException**: 413 Payload Too Large
+- **UnsupportedMediaTypeException**: 415 Unsupported Media Type
+- **UnprocessableEntityException**: 422 Unprocessable Entity
+- **InternalServerErrorException**: 500 Internal Server Error
+- **NotImplementedException**: 501 Not Implemented
+- **BadGatewayException**: 502 Bad Gateway
+- **ServiceUnavailableException**: 503 Service Unavailable
+- **GatewayTimeoutException**: 504 Gateway Timeout
+
+**Middleware - Phần Mềm Trung Gian:**
+
+Middleware trong NestJS là các functions hoặc classes được thực thi trước route handlers. Middleware có quyền truy cập vào request object, response object, và next function.
+
+**Chức năng của Middleware:**
+
+- **Request Processing**: Xử lý và modify requests trước khi đến handlers
+- **Response Processing**: Xử lý và modify responses trước khi gửi về client
+- **Cross-cutting Concerns**: Xử lý các concerns chung như logging, authentication, CORS
+- **Request Validation**: Validate requests ở middleware level
+- **Rate Limiting**: Giới hạn số lượng requests
+
+**Middleware Types:**
+
+- **Functional Middleware**: Simple functions với signature (req, res, next)
+- **Class-based Middleware**: Classes implement NestMiddleware interface
+- **Global Middleware**: Middleware áp dụng cho tất cả routes
+- **Route-specific Middleware**: Middleware chỉ áp dụng cho routes cụ thể
+
+**Middleware Execution Order:**
+
+1. Global middleware (được đăng ký với app.use())
+2. Module-level middleware
+3. Route-level middleware
+4. Route handlers
+
+**Custom Decorators - Trang Trí Tùy Chỉnh:**
+
+Custom decorators trong NestJS cho phép tạo ra các decorators riêng để extract metadata, inject dependencies, hoặc thêm logic tùy chỉnh.
+
+**Chức năng của Custom Decorators:**
+
+- **Parameter Extraction**: Extract data từ request (headers, query params, body)
+- **Metadata Storage**: Lưu trữ metadata cho routes và handlers
+- **Dependency Injection**: Tạo custom parameter decorators cho DI
+- **Request Context**: Truy cập request context và user information
+- **Validation**: Tạo decorators cho validation logic
+
+**Decorator Types:**
+
+- **Parameter Decorators**: Extract và transform parameter values
+- **Method Decorators**: Thêm metadata cho methods
+- **Class Decorators**: Thêm metadata cho classes
+- **Property Decorators**: Thêm metadata cho properties
+
+**Modules - Mô-đun:**
+
+Modules trong NestJS là các classes được sử dụng để tổ chức và đóng gói các components liên quan. Modules là nền tảng của kiến trúc NestJS.
+
+**Chức năng của Modules:**
+
+- **Code Organization**: Tổ chức code theo features hoặc domains
+- **Dependency Management**: Quản lý dependencies và providers
+- **Encapsulation**: Đóng gói controllers, providers, và imports
+- **Reusability**: Modules có thể được import và tái sử dụng
+- **Lazy Loading**: Hỗ trợ lazy loading modules để tối ưu performance
+
+**Module Structure:**
+
+- **imports**: Import các modules khác
+- **controllers**: Đăng ký controllers trong module
+- **providers**: Đăng ký providers (services, repositories) trong module
+- **exports**: Export providers để các modules khác sử dụng
+
+**Module Types:**
+
+- **Feature Modules**: Modules cho các features cụ thể (users, products, orders)
+- **Shared Modules**: Modules chứa code được chia sẻ giữa nhiều modules
+- **Global Modules**: Modules được đăng ký global, không cần import
+- **Dynamic Modules**: Modules có thể được cấu hình động
+
+**Providers - Nhà Cung Cấp:**
+
+Providers trong NestJS là các classes có thể được inject vào các classes khác thông qua Dependency Injection. Providers là nền tảng cho việc tạo và quản lý dependencies.
+
+**Chức năng của Providers:**
+
+- **Business Logic**: Chứa business logic của application
+- **Data Access**: Truy cập và thao tác với dữ liệu
+- **External Services**: Tích hợp với external services và APIs
+- **Utilities**: Cung cấp utility functions và helpers
+- **Configuration**: Quản lý configuration và settings
+
+**Provider Types:**
+
+- **Services**: Chứa business logic và application services
+- **Repositories**: Quản lý data access và database operations
+- **Factories**: Tạo instances của classes với logic phức tạp
+- **Values**: Cung cấp constant values hoặc configuration
+- **Async Providers**: Providers được tạo bất đồng bộ
+
+**Provider Scope:**
+
+- **DEFAULT**: Một instance được tạo và chia sẻ cho toàn bộ application
+- **REQUEST**: Một instance mới được tạo cho mỗi request
+- **TRANSIENT**: Một instance mới được tạo mỗi lần được inject
+
+**Controllers - Bộ Điều Khiển:**
+
+Controllers trong NestJS là các classes được sử dụng để xử lý HTTP requests và trả về responses. Controllers định nghĩa routes và route handlers.
+
+**Chức năng của Controllers:**
+
+- **Route Definition**: Định nghĩa routes và HTTP methods
+- **Request Handling**: Xử lý incoming requests
+- **Response Generation**: Tạo và trả về responses
+- **Parameter Extraction**: Extract parameters từ requests (body, query, params, headers)
+- **Status Codes**: Set HTTP status codes cho responses
+
+**Controller Decorators:**
+
+- **@Controller()**: Đánh dấu class là controller và định nghĩa route prefix
+- **@Get()**: Định nghĩa GET route
+- **@Post()**: Định nghĩa POST route
+- **@Put()**: Định nghĩa PUT route
+- **@Delete()**: Định nghĩa DELETE route
+- **@Patch()**: Định nghĩa PATCH route
+- **@Options()**: Định nghĩa OPTIONS route
+- **@Head()**: Định nghĩa HEAD route
+
+**Parameter Decorators:**
+
+- **@Body()**: Extract request body
+- **@Param()**: Extract route parameters
+- **@Query()**: Extract query parameters
+- **@Headers()**: Extract request headers
+- **@Ip()**: Extract client IP address
+- **@Session()**: Extract session data
+- **@HostParam()**: Extract host parameters
+- **@Req()**: Access raw request object
+- **@Res()**: Access raw response object
+
 ### 2.3.3. Express.js
 
 **Express.js** là một web framework nhỏ gọn và linh hoạt cho Node.js, được phát triển bởi TJ Holowaychuk vào năm 2010. Express.js đã trở thành framework phổ biến nhất cho Node.js và là foundation cho nhiều framework khác, bao gồm NestJS.
@@ -708,6 +947,131 @@ SSG là quá trình generate static HTML files tại build time.
    - No server-side vulnerabilities
    - Reduced attack surface
    - Static files are inherently secure
+
+**Incremental Static Regeneration (ISR) - Tái Tạo Tĩnh Tăng Dần:**
+
+ISR là một kỹ thuật kết hợp giữa SSG và SSR, cho phép generate static pages tại build time và regenerate chúng theo yêu cầu hoặc theo lịch trình định kỳ.
+
+**Đặc điểm của ISR:**
+
+- **Initial Generation**: Pages được generate tại build time như SSG
+- **On-Demand Regeneration**: Pages có thể được regenerate khi có request đến
+- **Background Regeneration**: Regenerate pages trong background mà không block requests
+- **Stale-While-Revalidate**: Serve stale content trong khi regenerate page mới
+- **Time-based Revalidation**: Regenerate pages sau một khoảng thời gian nhất định
+
+**Lợi Ích của ISR:**
+
+1. **Performance**: Kết hợp tốc độ của static pages với khả năng update content
+2. **Scalability**: Có thể handle traffic cao mà không cần server processing cho mỗi request
+3. **Fresh Content**: Content có thể được update mà không cần rebuild toàn bộ site
+4. **Cost Efficiency**: Giảm server costs trong khi vẫn có dynamic content
+5. **SEO**: Tốt cho SEO vì pages được pre-rendered
+
+**ISR Use Cases:**
+
+- E-commerce product pages với pricing thay đổi thường xuyên
+- Blog posts cần update content định kỳ
+- News sites với content mới nhưng không cần real-time
+- Dashboard pages với data thay đổi nhưng không cần instant updates
+
+**Client-Side Rendering (CSR) - Render Phía Client:**
+
+CSR là quá trình render HTML trên client (browser) sử dụng JavaScript. Toàn bộ application được load và render trên client side.
+
+**Đặc điểm của CSR:**
+
+- **Initial Load**: Server trả về minimal HTML với JavaScript bundle
+- **Client Rendering**: JavaScript render toàn bộ UI trên client
+- **API Calls**: Application gọi APIs để fetch data
+- **No Server Processing**: Server chỉ serve static files và APIs
+
+**Lợi Ích của CSR:**
+
+1. **Interactivity**: Highly interactive applications với rich user experience
+2. **Reduced Server Load**: Server không cần process rendering
+3. **Fast Navigation**: Client-side routing rất nhanh
+4. **Offline Support**: Có thể hoạt động offline với service workers
+
+**Hạn chế của CSR:**
+
+1. **SEO**: Search engines có thể không index content được render bởi JavaScript
+2. **Initial Load**: Initial load time có thể chậm với large JavaScript bundles
+3. **First Contentful Paint**: Time to first contentful paint có thể chậm
+
+**Server Fetch - Lấy Dữ Liệu Phía Server:**
+
+Server fetch trong Nuxt là quá trình fetch data trên server side (trong quá trình SSR hoặc SSG) trước khi render page.
+
+**Đặc điểm của Server Fetch:**
+
+- **Server Execution**: Data được fetch trên server, không phải client
+- **Pre-rendering**: Data được fetch trước khi render HTML
+- **SEO Friendly**: Data được include trong initial HTML
+- **Performance**: Giảm số lượng API calls từ client
+- **Security**: API keys và sensitive data không expose đến client
+
+**Server Fetch Methods:**
+
+- **useFetch()**: Universal fetch composable hoạt động trên cả server và client
+- **useAsyncData()**: Wrapper cho async data fetching với caching
+- **$fetch()**: Direct fetch function có thể được sử dụng trong server context
+- **useLazyFetch()**: Lazy version của useFetch, không block navigation
+- **useLazyAsyncData()**: Lazy version của useAsyncData
+
+**Server Fetch Benefits:**
+
+1. **SEO**: Data được include trong HTML, tốt cho SEO
+2. **Performance**: Faster initial page load vì data đã được fetch
+3. **Security**: Sensitive operations có thể được thực hiện trên server
+4. **Caching**: Server-side caching có thể được implement
+5. **Reduced Client Load**: Giảm số lượng requests từ client
+
+**Client Fetch - Lấy Dữ Liệu Phía Client:**
+
+Client fetch trong Nuxt là quá trình fetch data trên client side (browser) sau khi page đã được load.
+
+**Đặc điểm của Client Fetch:**
+
+- **Client Execution**: Data được fetch trong browser
+- **Post-render**: Data được fetch sau khi page đã render
+- **Interactive**: Có thể trigger fetch dựa trên user interactions
+- **Real-time**: Có thể fetch data real-time với polling hoặc WebSockets
+
+**Client Fetch Use Cases:**
+
+- **User Interactions**: Fetch data khi user click button hoặc submit form
+- **Real-time Updates**: Poll APIs để update data real-time
+- **Infinite Scroll**: Load more data khi user scroll
+- **Search**: Fetch search results khi user type
+- **Filters**: Fetch filtered data khi user apply filters
+
+**Fetch Composables:**
+
+- **useFetch()**: Universal composable, tự động detect server/client context
+- **$fetch()**: Direct fetch function, có thể được sử dụng ở bất kỳ đâu
+- **useAsyncData()**: Wrapper cho async operations với state management
+- **refreshCookie()**: Refresh cookies sau khi fetch
+- **clearNuxtData()**: Clear cached data
+
+**Fetch Options:**
+
+- **server**: Chỉ fetch trên server (default: true)
+- **client**: Chỉ fetch trên client (default: true)
+- **lazy**: Không block navigation, fetch trong background
+- **default**: Default value trong khi fetching
+- **transform**: Transform data sau khi fetch
+- **watch**: Watch reactive sources và refetch khi thay đổi
+- **immediate**: Fetch ngay lập tức (default: true)
+- **getCachedData**: Get cached data nếu available
+
+**Data Fetching Strategies:**
+
+1. **Server-Only Fetch**: Fetch chỉ trên server, data được include trong HTML
+2. **Client-Only Fetch**: Fetch chỉ trên client, sau khi page load
+3. **Universal Fetch**: Fetch trên cả server và client, với hydration
+4. **Lazy Fetch**: Fetch trong background, không block rendering
+5. **Reactive Fetch**: Refetch khi dependencies thay đổi
 
 **Hybrid Rendering:**
 
@@ -2025,6 +2389,97 @@ TypeORM sử dụng TypeScript decorators để định nghĩa entities và rela
 - **@CreateDateColumn()**: Tự động set khi entity được tạo
 - **@UpdateDateColumn()**: Tự động update khi entity được update
 - **@VersionColumn()**: Optimistic locking column
+- **@Generated()**: Đánh dấu column được auto-generated bởi database
+- **@Index()**: Tạo index cho column hoặc nhiều columns
+- **@Unique()**: Tạo unique constraint cho column hoặc nhiều columns
+- **@Check()**: Tạo check constraint cho column
+- **@Exclude()**: Loại trừ column khỏi serialization
+
+**Entity - Thực Thể:**
+
+Entity trong TypeORM là một TypeScript class được map với một database table. Entity đại diện cho một đối tượng trong domain model và chứa các properties được map với columns trong database table.
+
+**Đặc điểm của Entity:**
+
+- **Class-based**: Entity là một TypeScript class với decorators
+- **Table Mapping**: Mỗi entity được map với một database table
+- **Column Mapping**: Properties trong entity được map với columns trong table
+- **Type Safety**: TypeScript đảm bảo type safety cho entity properties
+- **Metadata-driven**: TypeORM sử dụng metadata từ decorators để generate SQL
+
+**Entity Decorators:**
+
+- **@Entity()**: Đánh dấu class là entity và map với database table
+- **@Table()**: Chỉ định tên table và các options như schema, engine, charset
+- **@ViewEntity()**: Đánh dấu class là view entity (map với database view)
+- **@ChildEntity()**: Đánh dấu class là child entity trong single table inheritance
+- **@AbstractEntity()**: Đánh dấu class là abstract entity (không được map với table)
+
+**Entity Options:**
+
+- **name**: Tên của table trong database (mặc định là class name)
+- **schema**: Database schema name
+- **database**: Database name
+- **synchronize**: Tự động sync schema với entities (chỉ dùng trong development)
+- **orderBy**: Default ordering cho queries
+- **engine**: Database engine (MySQL)
+- **charset**: Character set
+- **collation**: Collation
+
+**Column - Cột:**
+
+Column trong TypeORM là một property trong entity class được map với một column trong database table. Column decorators định nghĩa cách property được map với database column.
+
+**Đặc điểm của Column:**
+
+- **Property Mapping**: Map TypeScript property với database column
+- **Type Mapping**: Map TypeScript type với database type
+- **Constraints**: Định nghĩa constraints như nullable, unique, default
+- **Transformations**: Transform data khi read/write từ database
+- **Indexing**: Tạo indexes để tối ưu queries
+
+**Column Types:**
+
+- **String Types**: varchar, char, text, nvarchar
+- **Number Types**: int, bigint, float, double, decimal, numeric
+- **Date Types**: date, time, datetime, timestamp
+- **Boolean Types**: boolean, tinyint
+- **Binary Types**: blob, binary, varbinary
+- **JSON Types**: json, jsonb
+- **Array Types**: array (PostgreSQL)
+- **Enum Types**: enum
+- **UUID Types**: uuid
+
+**Column Options:**
+
+- **type**: Database column type
+- **name**: Tên column trong database (mặc định là property name)
+- **length**: Độ dài cho string columns
+- **width**: Width cho number columns
+- **nullable**: Có thể null hay không (default: false)
+- **default**: Giá trị mặc định
+- **unique**: Unique constraint
+- **primary**: Primary key column
+- **generated**: Auto-generated column
+- **precision**: Precision cho decimal columns
+- **scale**: Scale cho decimal columns
+- **comment**: Comment cho column
+- **transformer**: Transform data khi read/write
+- **array**: Array column (PostgreSQL)
+- **enum**: Enum values
+- **charset**: Character set
+- **collation**: Collation
+
+**Column Decorators:**
+
+- **@Column()**: Định nghĩa một column trong table
+- **@PrimaryColumn()**: Định nghĩa primary key (không auto-generated)
+- **@PrimaryGeneratedColumn()**: Định nghĩa auto-generated primary key
+- **@CreateDateColumn()**: Tự động set timestamp khi entity được tạo
+- **@UpdateDateColumn()**: Tự động update timestamp khi entity được update
+- **@DeleteDateColumn()**: Soft delete column (tự động set khi entity bị xóa)
+- **@VersionColumn()**: Optimistic locking column (tự động increment)
+- **@Generated()**: Đánh dấu column được auto-generated bởi database
 
 **Column Options:**
 

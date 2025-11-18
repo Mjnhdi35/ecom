@@ -1,18 +1,49 @@
-# MỞ ĐẦU
+# LỜI MỞ ĐẦU
 
-Phần mở đầu giới thiệu tổng quan về luận văn, bao gồm lời cảm ơn, tóm tắt nghiên cứu, mục đích và phạm vi nghiên cứu. Luận văn tập trung vào việc phát triển một hệ thống e-commerce nông nghiệp sử dụng các công nghệ web hiện đại và áp dụng các nguyên tắc của Software Engineering và Web Development để đảm bảo chất lượng, hiệu năng, và khả năng bảo trì của hệ thống.
+Trong bối cảnh cuộc Cách mạng công nghiệp 4.0 đang diễn ra mạnh mẽ trên toàn cầu, công nghệ thông tin đã và đang khẳng định vị trí không thể thiếu trong hầu hết các lĩnh vực của đời sống xã hội. Sự phát triển vượt bậc của Internet, trí tuệ nhân tạo, dữ liệu lớn, điện toán đám mây đã tạo ra những bước tiến quan trọng, mở ra nhiều mô hình kinh doanh mới, trong đó nổi bật là thương mại điện tử (E-commerce). Thương mại điện tử không chỉ góp phần thay đổi thói quen mua sắm truyền thống mà còn mang lại tính linh hoạt, nhanh chóng và minh bạch trong giao dịch, giúp kết nối trực tiếp giữa nhà sản xuất, nhà cung cấp và người tiêu dùng mà không bị giới hạn bởi không gian hay thời gian. Đây được xem là xu hướng tất yếu trong thời kỳ hội nhập, đóng vai trò then chốt trong chiến lược phát triển kinh tế số tại nhiều quốc gia, trong đó có Việt Nam.
 
-## Lời Cảm Ơn
+Đối với ngành nông nghiệp, việc ứng dụng thương mại điện tử mang ý nghĩa đặc biệt quan trọng. Nông nghiệp vốn là ngành sản xuất chủ lực của Việt Nam, gắn liền với đời sống của hàng chục triệu hộ nông dân. Tuy nhiên, thực tế cho thấy quá trình tiêu thụ nông sản vẫn còn tồn tại nhiều hạn chế: phụ thuộc nhiều vào thương lái trung gian, giá trị sản phẩm chưa được nâng cao, tình trạng "được mùa mất giá" vẫn thường xuyên diễn ra. Chính vì vậy, việc xây dựng các nền tảng thương mại điện tử chuyên biệt cho nông nghiệp không chỉ mở ra kênh phân phối mới, giúp người nông dân tiếp cận trực tiếp người tiêu dùng, mà còn góp phần minh bạch thông tin, ổn định giá cả, nâng cao thương hiệu và giá trị sản phẩm nông sản Việt Nam trên thị trường trong và ngoài nước.
 
-Tác giả xin chân thành cảm ơn:
+Xuất phát từ ý nghĩa thực tiễn đó, trong đợt thực tập tốt nghiệp, thực tập sinh đã lựa chọn đề tài: "Xây dựng Website Agriculture Ecommerce" với mục tiêu là thiết kế và xây dựng một hệ thống website thương mại điện tử trong lĩnh vực nông nghiệp.
 
-- Ban Giám hiệu và các thầy cô trong Khoa [Tên Khoa], Trường [Tên Trường] đã tạo điều kiện và hỗ trợ trong quá trình học tập và nghiên cứu.
+# LỜI CẢM ƠN
 
-- Thầy/Cô [Tên Giảng viên hướng dẫn], người đã tận tình hướng dẫn, đóng góp ý kiến quý báu và tạo động lực trong suốt quá trình thực hiện luận văn.
+Trước hết, thực tập sinh xin gửi lời tri ân sâu sắc và chân thành nhất đến Ban Giám hiệu Trường Cao đẳng Công nghệ thông tin TP. Hồ Chí Minh, cùng toàn thể quý thầy cô khoa Công nghệ thông tin – Điện tử đã tận tình giảng dạy, truyền đạt kiến thức, cũng như tạo mọi điều kiện thuận lợi cho thực tập sinh trong suốt quá trình học tập và rèn luyện tại trường. Những bài giảng, những chỉ dẫn quý báu từ thầy cô chính là nền tảng vững chắc giúp thực tập sinh có đủ hành trang kiến thức và kỹ năng để thực hiện đề tài tốt nghiệp này.
 
-- Gia đình, bạn bè và đồng nghiệp đã động viên, hỗ trợ và chia sẻ kinh nghiệm trong quá trình nghiên cứu.
+Đặc biệt, thực tập sinh xin bày tỏ lòng biết ơn sâu sắc đến ThS. Phạm Nguyễn Phúc Toàn, người đã trực tiếp hướng dẫn, chỉ bảo tận tình và định hướng trong suốt quá trình nghiên cứu, thực hiện và hoàn thiện đồ án. Sự quan tâm, động viên, cùng những góp ý chuyên môn quý báu của thầy đã giúp thực tập sinh tháo gỡ nhiều khó khăn, bổ sung thêm kiến thức thực tiễn và định hình phương pháp nghiên cứu khoa học hiệu quả.
 
-- Cộng đồng mã nguồn mở đã phát triển và duy trì các công nghệ được sử dụng trong dự án này.
+Thực tập sinh cũng xin chân thành cảm ơn ban lãnh đạo công ty cùng các anh/chị hướng dẫn tại đơn vị thực tập đã tạo mọi điều kiện thuận lợi để thực tập sinh có cơ hội tiếp cận thực tế, học hỏi kinh nghiệm, cũng như áp dụng kiến thức đã học vào môi trường làm việc chuyên nghiệp. Đây là trải nghiệm quý giá giúp thực tập sinh nâng cao năng lực chuyên môn và rèn luyện kỹ năng thực tiễn.
+
+Mặc dù đã nỗ lực hết sức để hoàn thành đề tài, nhưng do hạn chế về kiến thức và kinh nghiệm thực tế, báo cáo khó tránh khỏi những thiếu sót. Thực tập sinh kính mong nhận được sự thông cảm, cũng như những ý kiến đóng góp chân thành từ quý thầy cô và các bạn để đề tài được hoàn thiện hơn.
+
+Cuối cùng, thực tập sinh xin kính chúc quý thầy cô dồi dào sức khỏe, hạnh phúc và thành công trong sự nghiệp trồng người; chúc quý công ty ngày càng phát triển vững mạnh.
+
+Xin trân trọng cảm ơn!
+
+TP. Hồ Chí Minh, tháng 11 năm 2025
+
+Sinh viên thực hiện
+
+Đào Duy Minh
+
+## NHẬN XÉT CỦA NGƯỜI HƯỚNG DẪN
+
+ĐỐI VỚI SINH VIÊN THỰC TẬP
+
+## NHẬN XÉT CỦA ĐƠN VỊ THỰC TẬP
+
+ĐỐI VỚI SINH VIÊN THỰC TẬP
+
+TP. Hồ Chí Minh, ngày … tháng … năm 2025
+THỦ TRƯỞNG ĐƠN VỊ
+(Ký, ghi rõ họ tên đóng dấu)
+
+## NHẬN XÉT CỦA GIẢNG VIÊN HƯỚNG DẪN
+
+SINH VIÊN THỰC TẬP
+
+TP. Hồ Chí Minh, ngày … tháng … năm 2025
+GIẢNG VIÊN HƯỚNG DẪN
 
 ## Tóm Tắt
 

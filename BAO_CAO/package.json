@@ -1,0 +1,20 @@
+{
+  "name": "bao-cao-converter",
+  "version": "1.0.0",
+  "description": "Convert markdown files to Word documents",
+  "main": "convert-to-docx.js",
+  "scripts": {
+    "convert": "node convert-to-docx.js"
+  },
+  "keywords": [
+    "markdown",
+    "docx",
+    "converter"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "docx": "^8.6.0",
+    "marked": "^11.2.0"
+  }
+}
