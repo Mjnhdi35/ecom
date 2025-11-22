@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { DateEntity } from '../../../core/entities/date.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })
 export class User extends DateEntity {
@@ -12,6 +13,7 @@ export class User extends DateEntity {
   @Column({ unique: true })
   email: string;
 
-  @Column({ length: 30, nullable: false })
+  @Column({ nullable: false })
+  @Exclude()
   password: string;
 }
