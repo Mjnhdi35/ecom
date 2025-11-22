@@ -7,11 +7,11 @@ import {
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
-import { BcryptService } from '../../core/services/bcrypt.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { Request } from 'express';
 import { RefreshDto } from './dto/refresh.dto';
+import ms, { StringValue } from 'ms';
+import { BcryptService, CacheService, JwtPayload } from '../../core';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +20,7 @@ export class AuthService {
     private readonly bcryptService: BcryptService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    private readonly cache: CacheService,
   ) {}
   async register(body: CreateUserDto) {
     const user = await this.userService.create(body);
@@ -45,16 +46,23 @@ export class AuthService {
   }
 
   private async generatedTokens(userId: string) {
-    const payload = { sub: userId };
+    const payload: JwtPayload = { sub: userId };
     const accessToken = await this.jwtService.signAsync(payload, {
-      secret: this.configService.get('JWT_SECRET'),
-      expiresIn: this.configService.get('JWT_ACCESS_EXPIRES'),
+      secret: this.configService.getOrThrow('JWT_SECRET'),
+      expiresIn: this.configService.getOrThrow('JWT_ACCESS_EXPIRES'),
     });
     const refreshToken = await this.jwtService.signAsync(payload, {
-      secret: this.configService.get('JWT_REFRESH_SECRET'),
-      expiresIn: this.configService.get('JWT_REFRESH_EXPIRES'),
+      secret: this.configService.getOrThrow('JWT_REFRESH_SECRET'),
+      expiresIn: this.configService.getOrThrow('JWT_REFRESH_EXPIRES'),
     });
-
+    const msValueRf = ms(
+      this.configService.getOrThrow<StringValue>('JWT_REFRESH_EXPIRES'),
+    );
+    if (typeof msValueRf !== 'number' || msValueRf <= 0) {
+      throw new Error('Invalid JWT_REFRESH_EXPIRES value');
+    }
+    const refreshTTL = (msValueRf ?? 0) / 1000;
+    await this.cache.set(`refresh:${userId}`, refreshToken, refreshTTL);
     return { accessToken, refreshToken };
   }
 
@@ -68,16 +76,29 @@ export class AuthService {
 
   async refreshToken(body: RefreshDto) {
     if (!body.refreshToken) {
-      throw new NotFoundException('Not Found');
+      throw new BadRequestException('Not Found');
     }
-
     try {
-      const payload = await this.jwtService.verifyAsync(body.refreshToken, {
+      const payload = this.jwtService.verify<JwtPayload>(body.refreshToken, {
         secret: this.configService.get('JWT_REFRESH_SECRET'),
       });
+      if (!payload || typeof payload.sub !== 'string') {
+        throw new UnauthorizedException('Invalid refresh token');
+      }
+      const cachedToken = await this.cache.get<string>(
+        `refresh:${payload.sub}`,
+      );
+      if (!cachedToken || cachedToken !== body.refreshToken) {
+        throw new UnauthorizedException('Refresh token invalid or expired');
+      }
+
       return await this.generatedTokens(payload.sub);
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid Resource');
     }
+  }
+
+  async logout(userId: string) {
+    await this.cache.del(`refresh:${userId}`);
   }
 }

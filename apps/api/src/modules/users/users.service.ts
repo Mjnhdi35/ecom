@@ -8,7 +8,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import { BcryptService } from '../../core/services/bcrypt.service';
+import { BcryptService } from '../../core';
 
 @Injectable()
 export class UsersService {
@@ -46,7 +46,7 @@ export class UsersService {
       throw new NotFoundException('Not Found');
     }
     await this.userRepo.update(id, body);
-    return user;
+    return await this.findOne(id);
   }
 
   remove(id: string) {
