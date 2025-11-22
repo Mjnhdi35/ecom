@@ -33,7 +33,8 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    return await this.userRepo.findOne({ where: { id } });
+    const user = await this.userRepo.findOne({ where: { id } });
+    return user || null;
   }
 
   async findByEmail(email: string) {
@@ -43,13 +44,22 @@ export class UsersService {
   async update(id: string, body: UpdateUserDto) {
     const user = await this.findOne(id);
     if (!user) {
-      throw new NotFoundException('Not Found');
+      throw new NotFoundException('not found');
+    }
+
+    if (body.password) {
+      body.password = await this.bcryptService.hash(body.password);
     }
     await this.userRepo.update(id, body);
     return await this.findOne(id);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new NotFoundException('not found');
+    }
+    await this.userRepo.remove(user);
+    return { message: 'User deleted successfully' };
   }
 }

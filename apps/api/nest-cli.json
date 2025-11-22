@@ -10,6 +10,7 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "tsConfigPath": "tsconfig.build.json",
-    "builder": "tsc"
+    "builder": "tsc",
+    "typeCheck": true
   }
 }

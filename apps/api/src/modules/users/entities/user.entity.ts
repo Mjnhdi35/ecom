@@ -16,4 +16,7 @@ export class User extends DateEntity {
   @Column({ nullable: false })
   @Exclude()
   password: string;
+
+  @Column({ nullable: true })
+  bio?: string;
 }

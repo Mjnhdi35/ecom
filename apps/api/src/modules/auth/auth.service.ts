@@ -24,9 +24,6 @@ export class AuthService {
   ) {}
   async register(body: CreateUserDto) {
     const user = await this.userService.create(body);
-    if (!user) {
-      throw new NotFoundException('Not Found');
-    }
     const tokens = await this.generatedTokens(user.id);
     return tokens;
   }
@@ -75,9 +72,6 @@ export class AuthService {
   }
 
   async refreshToken(body: RefreshDto) {
-    if (!body.refreshToken) {
-      throw new BadRequestException('Not Found');
-    }
     try {
       const payload = this.jwtService.verify<JwtPayload>(body.refreshToken, {
         secret: this.configService.get('JWT_REFRESH_SECRET'),

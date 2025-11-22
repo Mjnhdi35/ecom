@@ -20,14 +20,15 @@ export class CacheService {
     const value = await this.redisClient.get(key);
     if (!value) return null;
     try {
-      return JSON.parse(value) as T; // cast T → safe enough
+      return JSON.parse(value) as T;
     } catch {
-      return null;
+      return value as T;
     }
   }
 
   async set<T>(key: string, value: T, ttlSeconds?: number) {
-    const val = JSON.stringify(value);
+    // If value is already a string, store it directly; otherwise stringify
+    const val = typeof value === 'string' ? value : JSON.stringify(value);
     if (ttlSeconds) {
       await this.redisClient.set(key, val, 'EX', ttlSeconds);
     } else {

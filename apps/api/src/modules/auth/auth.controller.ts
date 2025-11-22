@@ -23,12 +23,18 @@ export class AuthController {
 
   @Get('me')
   async me(@Req() req: AuthRequest) {
-    return await this.authService.me(req.user?.sub);
+    return await this.authService.me(req.user.sub);
   }
 
   @Public()
   @Post('refresh')
   async refreshToken(@Body() token: RefreshDto) {
     return await this.authService.refreshToken(token);
+  }
+
+  @Post('logout')
+  async logout(@Req() req: AuthRequest) {
+    await this.authService.logout(req.user.sub);
+    return { message: 'Logged out successfully' };
   }
 }
