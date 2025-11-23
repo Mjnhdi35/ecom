@@ -1,10 +1,29 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxt/image'],
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@pinia/nuxt',
+    '@pinia/colada-nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+  ],
   ssr: true,
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
+
+  // Color Mode configuration
+  colorMode: {
+    preference: 'system', // 'light' | 'dark' | 'system'
+    fallback: 'light',
+    classSuffix: '',
+  },
+
+  runtimeConfig: {
+    apiBase: process.env.API_BASE_URL!,
+    public: {},
+  },
 
   compatibilityDate: '2025-07-15',
 
@@ -21,8 +40,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // Nuxt Image configuration
-  // @see https://image.nuxt.com/getting-started/configuration
   image: {
     // Use ipx provider for static images in public folder
     provider: 'ipx',

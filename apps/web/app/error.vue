@@ -75,7 +75,7 @@ function handleRetry() {
 
 <template>
   <UApp>
-    <div class="min-h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col bg-white dark:bg-gray-900">
       <UError
         :error="error"
         :redirect="'/'"

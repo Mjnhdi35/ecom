@@ -55,8 +55,18 @@ export default defineAppConfig({
     input: {
       defaultVariants: {
         color: 'primary',
-        size: 'md',
+        size: 'lg',
         variant: 'outline',
+      },
+      slots: {
+        base: 'relative',
+        wrapper: 'relative',
+        leading: 'absolute inset-y-0 left-0 flex items-center pl-3',
+        trailing: 'absolute inset-y-0 right-0 flex items-center pr-3',
+        inner:
+          'block w-full border-0 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 focus:ring-0 focus:outline-none sm:text-sm',
+        input:
+          'block w-full border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-primary-500 dark:focus:border-primary-400 focus:ring-2 focus:ring-primary-500/20 dark:focus:ring-primary-400/20 transition-colors duration-200',
       },
     },
 
@@ -95,14 +105,14 @@ export default defineAppConfig({
     // Header component configuration
     header: {
       slots: {
-        root: 'bg-white sticky top-0 z-50',
+        root: 'bg-white dark:bg-gray-900 sticky top-0 z-50',
         container:
-          'flex items-center justify-between gap-2 sm:gap-4 py-3 sm:py-4 border-b border-gray-200',
+          'flex items-center justify-between gap-2 sm:gap-4 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-800',
         left: 'shrink-0',
         center: 'flex-1 max-w-2xl mx-auto hidden lg:flex',
         right: 'flex items-center gap-2 lg:gap-4 shrink-0',
-        top: 'bg-white border-b border-gray-200',
-        bottom: 'hidden lg:block bg-gray-900',
+        top: 'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800',
+        bottom: 'hidden lg:block bg-gray-900 dark:bg-gray-800',
         body: 'lg:hidden',
       },
     },
@@ -111,8 +121,8 @@ export default defineAppConfig({
     footer: {
       slots: {
         root: '',
-        top: 'bg-white',
-        bottom: 'bg-primary-800',
+        top: 'bg-white dark:bg-gray-900',
+        bottom: 'bg-primary-800 dark:bg-primary-900',
       },
     },
 

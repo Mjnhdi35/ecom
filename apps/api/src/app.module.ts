@@ -12,6 +12,7 @@ import { CoreModule } from './core/core.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '../.env',
     }),
     DatabaseModule,
     RedisModule,

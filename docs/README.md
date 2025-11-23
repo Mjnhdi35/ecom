@@ -48,6 +48,18 @@ Tài liệu đầy đủ về Nuxt UI components, composables, examples và best
 
 Design system với colors, typography (Poppins), responsive breakpoints, và cách sử dụng trong Nuxt UI.
 
+### 12. [API Proxy](./api-proxy.md)
+
+API proxy setup và usage trong Nuxt web app, cách sử dụng Nitro server để proxy requests.
+
+### 13. [Icons](./icons.md)
+
+Danh sách icons được sử dụng trong project, loading strategy và optimization.
+
+### 14. [Pinia Setup](./pinia-setup.md)
+
+Pinia với Colada và PersistedState setup, state management và async data handling.
+
 ## 🚀 Quick Links
 
 ### Cho người mới bắt đầu
@@ -83,6 +95,9 @@ Design system với colors, typography (Poppins), responsive breakpoints, và c�
 - **Auth**: [Authentication Flow](./authentication.md)
 - **Libraries**: [Libraries & Dependencies](./libraries.md)
 - **Mẫu thiết kế**: [Thuật toán & Mẫu thiết kế](./algorithms.md)
+- **API Proxy**: [API Proxy](./api-proxy.md)
+- **Icons**: [Icons](./icons.md)
+- **Pinia**: [Pinia Setup](./pinia-setup.md)
 
 ### Cấu trúc Documentation
 

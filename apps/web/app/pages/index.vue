@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white py-16" />
+  <div class="min-h-screen bg-white dark:bg-gray-900 py-16" />
 </template>
 
 <script setup lang="ts">
