@@ -1,2 +1,311 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+
+/* Design System Configuration */
+
+@theme {
+  /* Typography - Poppins Font */
+  --font-sans: 'Poppins', system-ui, sans-serif;
+
+  /* Primary Colors - Green Scale */
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #00b207; /* Primary */
+  --color-primary-600: #2c742f; /* Hard Primary */
+  --color-primary-700: #1e4d21;
+  --color-primary-800: #153917;
+  --color-primary-900: #0f2611;
+  --color-primary-950: #051408;
+
+  /* Soft Primary - Light Green */
+  --color-soft-primary-50: #f6fef7;
+  --color-soft-primary-100: #ecfdf0;
+  --color-soft-primary-200: #d9fbe2;
+  --color-soft-primary-300: #b8f5c8;
+  --color-soft-primary-400: #84d187; /* Soft Primary */
+  --color-soft-primary-500: #6bc76f;
+  --color-soft-primary-600: #4fa853;
+  --color-soft-primary-700: #3f8443;
+  --color-soft-primary-800: #356938;
+  --color-soft-primary-900: #2d562f;
+  --color-soft-primary-950: #152f17;
+
+  /* Warning - Orange/Yellow */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #ffb400; /* Warning */
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
+
+  /* Error/Danger - Red */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ea4848; /* Danger */
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  --color-error-950: #450a0a;
+
+  /* Gray Scale */
+  --color-gray-50: #fafafa; /* Gray .5 */
+  --color-gray-100: #f5f5f5; /* Gray 1 */
+  --color-gray-200: #e5e5e5; /* Gray 2 */
+  --color-gray-300: #d4d4d4; /* Gray 3 */
+  --color-gray-400: #a3a3a3; /* Gray 4 */
+  --color-gray-500: #737373; /* Gray 5 */
+  --color-gray-600: #525252; /* Gray 6 */
+  --color-gray-700: #404040; /* Gray 7 */
+  --color-gray-800: #262626; /* Gray 8 */
+  --color-gray-900: #171717; /* Gray 9 */
+  --color-gray-950: #0a0a0a;
+
+  /* Green Gray Scale */
+  --color-green-gray-50: #f6faf6;
+  --color-green-gray-100: #e8f3e8;
+  --color-green-gray-200: #d1e7d1;
+  --color-green-gray-300: #a8cfa8;
+  --color-green-gray-400: #7ab37a;
+  --color-green-gray-500: #5a9a5a; /* Green Gray 5 */
+  --color-green-gray-600: #4a7f4a;
+  --color-green-gray-700: #3d663d;
+  --color-green-gray-800: #2f4f2f;
+  --color-green-gray-900: #1f341f; /* Green Gray 9 */
+  --color-green-gray-950: #0f1a0f;
+
+  /* White */
+  --color-white: #ffffff;
+
+  /* Responsive Breakpoints */
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+}
+
+/* CSS Variables for Nuxt UI */
+:root {
+  /* Primary color mapping */
+  --ui-primary: var(--color-primary-500);
+  --ui-warning: var(--color-warning-400);
+  --ui-error: var(--color-error-500);
+
+  /* Text colors */
+  --ui-text: var(--color-gray-700);
+  --ui-text-highlighted: var(--color-gray-900);
+  --ui-text-muted: var(--color-gray-500);
+  --ui-text-dimmed: var(--color-gray-400);
+
+  /* Background colors */
+  --ui-bg: var(--color-white);
+  --ui-bg-muted: var(--color-gray-50);
+  --ui-bg-elevated: var(--color-gray-100);
+
+  /* Border colors */
+  --ui-border: var(--color-gray-200);
+  --ui-border-muted: var(--color-gray-200);
+  --ui-border-accented: var(--color-gray-300);
+
+  /* Container max width */
+  --ui-container: 120rem; /* 1920px */
+
+  /* Border radius */
+  --ui-radius: 0.5rem;
+}
+
+.dark {
+  /* Primary color mapping for dark mode */
+  --ui-primary: var(--color-primary-400);
+  --ui-warning: var(--color-warning-300);
+  --ui-error: var(--color-error-400);
+
+  /* Text colors for dark mode */
+  --ui-text: var(--color-gray-200);
+  --ui-text-highlighted: white;
+  --ui-text-muted: var(--color-gray-400);
+  --ui-text-dimmed: var(--color-gray-500);
+
+  /* Background colors for dark mode */
+  --ui-bg: var(--color-gray-900);
+  --ui-bg-muted: var(--color-gray-800);
+  --ui-bg-elevated: var(--color-gray-800);
+
+  /* Border colors for dark mode */
+  --ui-border: var(--color-gray-800);
+  --ui-border-muted: var(--color-gray-700);
+  --ui-border-accented: var(--color-gray-700);
+}
+
+/* Typography - Poppins Font */
+/* Nuxt Fonts will automatically load Poppins when declared in @theme */
+/* Font weights: 300, 400, 500, 600, 700 */
+
+/* Base typography styles */
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Typography scale - Display and Headings */
+/* Using CSS custom properties for better maintainability */
+:root {
+  --typography-display-01: 4rem; /* 64px */
+  --typography-heading-01: 3rem; /* 48px */
+  --typography-heading-02: 2.25rem; /* 36px */
+  --typography-heading-03: 1.875rem; /* 30px */
+  --typography-heading-04: 1.5rem; /* 24px */
+  --typography-heading-05: 1.25rem; /* 20px */
+  --typography-body-xxl: 1.5rem; /* 24px */
+  --typography-body-xl: 1.25rem; /* 20px */
+  --typography-body-large: 1.125rem; /* 18px */
+  --typography-body-medium: 1rem; /* 16px */
+  --typography-body-small: 0.875rem; /* 14px */
+  --typography-body-tiny: 0.75rem; /* 12px */
+}
+
+/* Display styles */
+.display-01,
+.display-01-600 {
+  font-size: var(--typography-display-01);
+  line-height: 1.2;
+}
+
+.display-01 {
+  font-weight: 400;
+}
+
+.display-01-600 {
+  font-weight: 600;
+}
+
+/* Heading styles */
+.heading-01,
+.heading-01-600 {
+  font-size: var(--typography-heading-01);
+  line-height: 1.3;
+}
+
+.heading-01 {
+  font-weight: 400;
+}
+
+.heading-01-600 {
+  font-weight: 600;
+}
+
+.heading-02,
+.heading-02-600 {
+  font-size: var(--typography-heading-02);
+  line-height: 1.3;
+}
+
+.heading-02 {
+  font-weight: 400;
+}
+
+.heading-02-600 {
+  font-weight: 600;
+}
+
+.heading-03,
+.heading-03-600 {
+  font-size: var(--typography-heading-03);
+  line-height: 1.4;
+}
+
+.heading-03 {
+  font-weight: 400;
+}
+
+.heading-03-600 {
+  font-weight: 600;
+}
+
+.heading-04,
+.heading-04-600 {
+  font-size: var(--typography-heading-04);
+  line-height: 1.4;
+}
+
+.heading-04 {
+  font-weight: 400;
+}
+
+.heading-04-600 {
+  font-weight: 600;
+}
+
+.heading-05,
+.heading-05-600 {
+  font-size: var(--typography-heading-05);
+  line-height: 1.5;
+}
+
+.heading-05 {
+  font-weight: 400;
+}
+
+.heading-05-600 {
+  font-weight: 600;
+}
+
+/* Body text styles */
+.body-xxl {
+  font-size: var(--typography-body-xxl);
+  line-height: 1.6;
+}
+
+.body-xl {
+  font-size: var(--typography-body-xl);
+  line-height: 1.6;
+}
+
+.body-large {
+  font-size: var(--typography-body-large);
+  line-height: 1.6;
+}
+
+.body-medium {
+  font-size: var(--typography-body-medium);
+  line-height: 1.6;
+}
+
+.body-small {
+  font-size: var(--typography-body-small);
+  line-height: 1.5;
+}
+
+.body-tiny {
+  font-size: var(--typography-body-tiny);
+  line-height: 1.5;
+}
+
+/* Container configuration is now handled by UContainer component in app.config.ts */
+
+/* Custom utility classes (only if not available in Tailwind) */
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  :root {
+    --typography-display-01: 2.5rem; /* 40px */
+    --typography-heading-01: 2rem; /* 32px */
+    --typography-heading-02: 1.75rem; /* 28px */
+    --typography-heading-03: 1.5rem; /* 24px */
+  }
+}
