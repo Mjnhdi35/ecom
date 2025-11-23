@@ -1,25 +1,24 @@
 <script setup lang="ts">
-import type { NuxtError } from '#app';
+import type { NuxtError } from '#app'
 
 const props = defineProps<{
-  error: NuxtError;
-}>();
+  error: NuxtError
+}>()
 
-const route = useRoute();
-const router = useRouter();
+const router = useRouter()
 
 // Custom error messages based on status code
 const errorConfig = computed(() => {
-  const statusCode = props.error.statusCode || 500;
-  const statusMessage = props.error.statusMessage || 'Something went wrong';
+  const statusCode = props.error.statusCode || 500
+  const statusMessage = props.error.statusMessage || 'Something went wrong'
 
   const configs: Record<
     number,
     {
-      title: string;
-      description: string;
-      icon: string;
-      color: 'primary' | 'error' | 'warning' | 'info';
+      title: string
+      description: string
+      icon: string
+      color: 'primary' | 'error' | 'warning' | 'info'
     }
   > = {
     404: {
@@ -49,28 +48,28 @@ const errorConfig = computed(() => {
       icon: 'i-lucide-wrench',
       color: 'warning',
     },
-  };
+  }
 
   return (
     configs[statusCode] || {
       title: statusMessage,
       description:
-        props.error.message ||
-        'An error occurred while processing your request.',
+        props.error.message
+        || 'An error occurred while processing your request.',
       icon: 'i-lucide-alert-circle',
       color: 'error',
     }
-  );
-});
+  )
+})
 
 // Handle error clear
 function handleClear() {
-  router.push('/');
+  router.push('/')
 }
 
 // Handle retry (for client-side errors)
 function handleRetry() {
-  router.go(0);
+  router.go(0)
 }
 </script>
 
@@ -99,14 +98,21 @@ function handleRetry() {
       >
         <!-- Custom status code display -->
         <template #statusCode>
-          <div class="flex items-center justify-center gap-4">
-            <UIcon
-              :name="errorConfig.icon"
-              class="size-16 sm:size-24 text-muted"
+          <div class="flex flex-col items-center justify-center gap-6">
+            <!-- Error Image -->
+            <NuxtImg
+              src="/assets/images/404-error.png"
+              alt="Error"
+              class="w-64 sm:w-80 lg:w-96 h-auto object-contain"
+              preset="error"
+              loading="eager"
+              format="png"
+              quality="85"
             />
-            <span class="text-6xl sm:text-8xl font-bold text-muted">
+            <!-- Status Code -->
+            <!-- <span class="text-6xl sm:text-8xl font-bold text-muted">
               {{ error.statusCode || '500' }}
-            </span>
+            </span> -->
           </div>
         </template>
 

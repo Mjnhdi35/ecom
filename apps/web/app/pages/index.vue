@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white py-16"></div>
+  <div class="min-h-screen bg-white py-16" />
 </template>
 
 <script setup lang="ts">
@@ -11,7 +11,7 @@ useHead({
       content: 'Agriculture - Your eco-friendly marketplace',
     },
   ],
-});
+})
 </script>
 
 <style scoped></style>

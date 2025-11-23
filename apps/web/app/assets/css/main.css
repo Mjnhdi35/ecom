@@ -151,35 +151,30 @@
   --ui-border-accented: var(--color-gray-700);
 }
 
-/* Typography - Poppins Font */
-/* Nuxt Fonts will automatically load Poppins when declared in @theme */
-/* Font weights: 300, 400, 500, 600, 700 */
-
-/* Base typography styles */
+/* Base typography */
 body {
   font-family: var(--font-sans);
   font-weight: 400;
   line-height: 1.5;
 }
 
-/* Typography scale - Display and Headings */
-/* Using CSS custom properties for better maintainability */
+/* Typography scale - CSS custom properties */
 :root {
-  --typography-display-01: 4rem; /* 64px */
-  --typography-heading-01: 3rem; /* 48px */
-  --typography-heading-02: 2.25rem; /* 36px */
-  --typography-heading-03: 1.875rem; /* 30px */
-  --typography-heading-04: 1.5rem; /* 24px */
-  --typography-heading-05: 1.25rem; /* 20px */
-  --typography-body-xxl: 1.5rem; /* 24px */
-  --typography-body-xl: 1.25rem; /* 20px */
-  --typography-body-large: 1.125rem; /* 18px */
-  --typography-body-medium: 1rem; /* 16px */
-  --typography-body-small: 0.875rem; /* 14px */
-  --typography-body-tiny: 0.75rem; /* 12px */
+  --typography-display-01: 4rem;
+  --typography-heading-01: 3rem;
+  --typography-heading-02: 2.25rem;
+  --typography-heading-03: 1.875rem;
+  --typography-heading-04: 1.5rem;
+  --typography-heading-05: 1.25rem;
+  --typography-body-xxl: 1.5rem;
+  --typography-body-xl: 1.25rem;
+  --typography-body-large: 1.125rem;
+  --typography-body-medium: 1rem;
+  --typography-body-small: 0.875rem;
+  --typography-body-tiny: 0.75rem;
 }
 
-/* Display styles */
+/* Typography utility classes */
 .display-01,
 .display-01-600 {
   font-size: var(--typography-display-01);
@@ -194,7 +189,6 @@ body {
   font-weight: 600;
 }
 
-/* Heading styles */
 .heading-01,
 .heading-01-600 {
   font-size: var(--typography-heading-01);
@@ -265,7 +259,6 @@ body {
   font-weight: 600;
 }
 
-/* Body text styles */
 .body-xxl {
   font-size: var(--typography-body-xxl);
   line-height: 1.6;
@@ -295,10 +288,6 @@ body {
   font-size: var(--typography-body-tiny);
   line-height: 1.5;
 }
-
-/* Container configuration is now handled by UContainer component in app.config.ts */
-
-/* Custom utility classes (only if not available in Tailwind) */
 
 /* Responsive typography */
 @media (max-width: 768px) {

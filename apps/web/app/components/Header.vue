@@ -1,8 +1,74 @@
+<script setup lang="ts">
+// Component name must be multi-word for Vue linting
+defineOptions({
+  name: 'AppHeader',
+})
+
+interface NavigationItem {
+  label: string
+  to: string
+  hasDropdown?: boolean
+}
+
+// Header UI customization
+const headerUi = {
+  root: 'bg-white sticky top-0 z-50',
+  container:
+    'flex items-center justify-between gap-2 sm:gap-4 border-b border-gray-200',
+  left: 'shrink-0',
+  center: 'flex-1 max-w-2xl mx-auto hidden lg:flex',
+  right: 'flex items-center gap-2 lg:gap-4 shrink-0',
+}
+
+// Language options
+const languages = ref([
+  { label: 'Vie', value: 'vi' },
+  { label: 'Eng', value: 'en' },
+  { label: 'Esp', value: 'es' },
+])
+
+// Currency options
+const currencies = ref([
+  { label: 'VND', value: 'vnd' },
+  { label: 'USD', value: 'usd' },
+  { label: 'EUR', value: 'eur' },
+])
+
+// Selected values
+const selectedLanguage = ref('vi')
+const selectedCurrency = ref('vnd')
+
+// Search
+const searchQuery = ref('')
+
+// Cart
+const cartItemCount = ref(2)
+const cartTotal = ref(57.0)
+const cartOpen = ref(false)
+
+// Navigation items
+const navigationItems = ref<NavigationItem[]>([
+  { label: 'Home', to: '/', hasDropdown: true },
+  { label: 'Shop', to: '/shop', hasDropdown: true },
+  { label: 'Pages', to: '/pages', hasDropdown: true },
+  { label: 'Blog', to: '/blog', hasDropdown: true },
+  { label: 'About Us', to: '/about' },
+  { label: 'Contact Us', to: '/contact' },
+])
+
+// Search handler
+function handleSearch() {
+  if (searchQuery.value.trim()) {
+    navigateTo(`/search?q=${encodeURIComponent(searchQuery.value)}`)
+  }
+}
+</script>
+
 <template>
   <UHeader :ui="headerUi">
     <!-- Top Bar -->
     <template #top>
-      <div class="bg-white">
+      <div class="hidden sm:block bg-white">
         <UContainer class="py-2 sm:py-4">
           <div
             class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0"
@@ -65,7 +131,10 @@
     <!-- Center: Search Bar -->
     <template #default>
       <div class="flex-1 max-w-2xl mx-auto hidden lg:flex">
-        <form @submit.prevent="handleSearch" class="flex gap-2 w-full">
+        <form
+          class="flex gap-2 w-full"
+          @submit.prevent="handleSearch"
+        >
           <UInput
             v-model="searchQuery"
             type="search"
@@ -124,7 +193,7 @@
             </span>
           </div>
           <div class="hidden sm:flex flex-col">
-            <span class="body-small text-gray-600">Shopping cart:</span>
+            <span class="body-small text-gray-600">Cart:</span>
             <span class="body-medium font-semibold text-gray-900">
               ${{ cartTotal.toFixed(2) }}
             </span>
@@ -133,20 +202,18 @@
       </div>
     </template>
 
-    <!-- Bottom: Navigation Bar -->
+    <!-- Bottom: Navigation Bar (Desktop only) -->
     <template #bottom>
-      <nav class="bg-gray-900">
+      <nav class="hidden lg:block bg-gray-900">
         <UContainer class="py-3 lg:py-4">
-          <div
-            class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 lg:gap-0"
-          >
+          <div class="flex items-center justify-between gap-6">
             <!-- Left: Navigation Menu -->
-            <div class="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-6">
+            <div class="flex items-center gap-6">
               <NuxtLink
                 v-for="item in navigationItems"
                 :key="item.label"
                 :to="item.to"
-                class="nav-link flex items-center gap-1 body-medium text-white hover:text-primary-400 transition-colors whitespace-nowrap"
+                class="nav-link flex items-center gap-1 body-medium text-white hover:text-primary-400 transition-colors"
               >
                 <span>{{ item.label }}</span>
                 <UIcon
@@ -158,16 +225,14 @@
             </div>
 
             <!-- Right: Phone Number -->
-            <div
-              class="flex items-center gap-2 w-full lg:w-auto justify-center lg:justify-end"
-            >
+            <div class="flex items-center gap-2">
               <UIcon
                 name="i-lucide-phone"
-                class="size-4 sm:size-5 text-white shrink-0"
+                class="size-5 text-white shrink-0"
               />
               <a
                 href="tel:+84909090909"
-                class="body-medium text-white hover:text-primary-400 transition-colors whitespace-nowrap"
+                class="body-medium text-white hover:text-primary-400 transition-colors"
               >
                 +84 909 090 909
               </a>
@@ -176,76 +241,82 @@
         </UContainer>
       </nav>
     </template>
+
+    <!-- Mobile Menu Body -->
+    <template #body>
+      <div class="lg:hidden">
+        <UContainer class="py-4">
+          <!-- Mobile Search Bar -->
+          <form
+            class="mb-6"
+            @submit.prevent="handleSearch"
+          >
+            <div class="flex gap-2">
+              <UInput
+                v-model="searchQuery"
+                type="search"
+                placeholder="Search"
+                size="lg"
+                color="primary"
+                variant="outline"
+                icon="i-lucide-search"
+                class="flex-1"
+                :ui="{ base: 'rounded-r-none' }"
+              />
+              <UButton
+                type="submit"
+                color="primary"
+                size="lg"
+                variant="solid"
+                label="Search"
+                class="rounded-l-none"
+              />
+            </div>
+          </form>
+
+          <!-- Mobile Navigation Menu -->
+          <nav class="mb-6">
+            <ul class="flex flex-col gap-1">
+              <li
+                v-for="item in navigationItems"
+                :key="item.label"
+              >
+                <NuxtLink
+                  :to="item.to"
+                  class="nav-link-mobile flex items-center justify-between body-medium text-gray-900 hover:text-primary-500 hover:bg-gray-50 rounded-lg px-3 py-2 transition-colors"
+                >
+                  <span>{{ item.label }}</span>
+                  <UIcon
+                    v-if="item.hasDropdown"
+                    name="i-lucide-chevron-right"
+                    class="size-4 text-gray-400"
+                  />
+                </NuxtLink>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Mobile Phone Number -->
+          <div class="flex items-center gap-2 pt-4 border-t border-gray-200">
+            <UIcon
+              name="i-lucide-phone"
+              class="size-5 text-primary-500 shrink-0"
+            />
+            <a
+              href="tel:+84909090909"
+              class="body-medium text-gray-900 hover:text-primary-500 transition-colors"
+            >
+              +84 909 090 909
+            </a>
+          </div>
+        </UContainer>
+      </div>
+    </template>
   </UHeader>
 </template>
-
-<script setup lang="ts">
-interface NavigationItem {
-  label: string;
-  to: string;
-  hasDropdown?: boolean;
-}
-
-// Header UI customization
-const headerUi = {
-  root: 'bg-white sticky top-0 z-50',
-  container:
-    'flex items-center justify-between gap-2 sm:gap-4 py-3 sm:py-4 border-b border-gray-200',
-  left: 'shrink-0',
-  center: 'flex-1 max-w-2xl mx-auto hidden lg:flex',
-  right: 'flex items-center gap-2 lg:gap-4 shrink-0',
-};
-
-// Language options
-const languages = ref([
-  { label: 'Vie', value: 'vi' },
-  { label: 'Eng', value: 'en' },
-  { label: 'Esp', value: 'es' },
-]);
-
-// Currency options
-const currencies = ref([
-  { label: 'VND', value: 'vnd' },
-  { label: 'USD', value: 'usd' },
-  { label: 'EUR', value: 'eur' },
-]);
-
-// Selected values
-const selectedLanguage = ref('vi');
-const selectedCurrency = ref('vnd');
-
-// Search
-const searchQuery = ref('');
-
-// Cart
-const cartItemCount = ref(2);
-const cartTotal = ref(57.0);
-const cartOpen = ref(false);
-
-// Navigation items
-const navigationItems = ref<NavigationItem[]>([
-  { label: 'Home', to: '/', hasDropdown: true },
-  { label: 'Shop', to: '/shop', hasDropdown: true },
-  { label: 'Pages', to: '/pages', hasDropdown: true },
-  { label: 'Blog', to: '/blog', hasDropdown: true },
-  { label: 'About Us', to: '/about' },
-  { label: 'Contact Us', to: '/contact' },
-]);
-
-// Search handler
-function handleSearch() {
-  if (searchQuery.value.trim()) {
-    navigateTo(`/search?q=${encodeURIComponent(searchQuery.value)}`);
-  }
-}
-</script>
 
 <style scoped>
 .nav-link {
   position: relative;
-}
-
-.nav-link:hover {
-  color: var(--color-primary-400);
 }
 </style>

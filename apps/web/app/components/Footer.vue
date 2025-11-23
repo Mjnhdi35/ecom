@@ -1,3 +1,89 @@
+<script setup lang="ts">
+// Component name must be multi-word for Vue linting
+defineOptions({
+  name: 'AppFooter',
+})
+
+interface FooterLink {
+  label: string
+  to: string
+}
+
+// Footer UI customization
+const footerUi = {}
+
+// Newsletter
+const email = ref('')
+
+// Social Media Links
+const socialLinks = [
+  {
+    name: 'Facebook',
+    icon: 'i-simple-icons-facebook',
+    url: 'https://facebook.com',
+  },
+  {
+    name: 'Twitter',
+    icon: 'i-simple-icons-twitter',
+    url: 'https://twitter.com',
+  },
+  {
+    name: 'Pinterest',
+    icon: 'i-simple-icons-pinterest',
+    url: 'https://pinterest.com',
+  },
+  {
+    name: 'Instagram',
+    icon: 'i-simple-icons-instagram',
+    url: 'https://instagram.com',
+  },
+]
+
+// My Account Links
+const myAccountLinks = ref<FooterLink[]>([
+  { label: 'My Account', to: '/account' },
+  { label: 'Order History', to: '/account/orders' },
+  { label: 'Shoping Cart', to: '/cart' },
+  { label: 'Wishlist', to: '/wishlist' },
+])
+
+// Helps Links
+const helpsLinks = ref<FooterLink[]>([
+  { label: 'Contact', to: '/contact' },
+  { label: 'FAQ', to: '/faqs' },
+  { label: 'Terms & Condition', to: '/terms' },
+  { label: 'Privacy Policy', to: '/privacy' },
+])
+
+// Proxy Links
+const proxyLinks = ref<FooterLink[]>([
+  { label: 'About', to: '/about' },
+  { label: 'Shop', to: '/shop' },
+  { label: 'Product', to: '/products' },
+  { label: 'Track Order', to: '/track-order' },
+])
+
+// Categories
+const categories = ref<FooterLink[]>([
+  { label: 'Fruit & Vegetables', to: '/categories/fruits-vegetables' },
+  { label: 'Meat & Fish', to: '/categories/meat-fish' },
+  { label: 'Bread & Bakery', to: '/categories/bread-bakery' },
+  { label: 'Beauty & Health', to: '/categories/beauty-health' },
+])
+
+// Current Year
+const currentYear = new Date().getFullYear()
+
+// Subscribe handler
+function handleSubscribe() {
+  if (email.value.trim()) {
+    console.log('Subscribing:', email.value)
+    // Implement newsletter subscription logic here
+    email.value = ''
+  }
+}
+</script>
+
 <template>
   <UFooter :ui="footerUi">
     <!-- Top: Newsletter Subscription Section -->
@@ -24,8 +110,8 @@
             >
               <!-- Email Input and Subscribe Button -->
               <form
-                @submit.prevent="handleSubscribe"
                 class="flex gap-0 flex-1 sm:flex-initial"
+                @submit.prevent="handleSubscribe"
               >
                 <UInput
                   v-model="email"
@@ -108,9 +194,14 @@
 
             <!-- Middle Columns: Navigation Links -->
             <div>
-              <h3 class="heading-05-600 text-white mb-4">My Account</h3>
+              <h3 class="heading-05-600 text-white mb-4">
+                My Account
+              </h3>
               <ul class="flex flex-col gap-3">
-                <li v-for="link in myAccountLinks" :key="link.label">
+                <li
+                  v-for="link in myAccountLinks"
+                  :key="link.label"
+                >
                   <NuxtLink
                     :to="link.to"
                     class="body-medium text-gray-300 hover:text-primary-300 transition-colors"
@@ -122,9 +213,14 @@
             </div>
 
             <div>
-              <h3 class="heading-05-600 text-white mb-4">Helps</h3>
+              <h3 class="heading-05-600 text-white mb-4">
+                Helps
+              </h3>
               <ul class="flex flex-col gap-3">
-                <li v-for="link in helpsLinks" :key="link.label">
+                <li
+                  v-for="link in helpsLinks"
+                  :key="link.label"
+                >
                   <NuxtLink
                     :to="link.to"
                     class="body-medium text-gray-300 hover:text-primary-300 transition-colors"
@@ -136,9 +232,14 @@
             </div>
 
             <div>
-              <h3 class="heading-05-600 text-white mb-4">Proxy</h3>
+              <h3 class="heading-05-600 text-white mb-4">
+                Proxy
+              </h3>
               <ul class="flex flex-col gap-3">
-                <li v-for="link in proxyLinks" :key="link.label">
+                <li
+                  v-for="link in proxyLinks"
+                  :key="link.label"
+                >
                   <NuxtLink
                     :to="link.to"
                     class="body-medium text-gray-300 hover:text-primary-300 transition-colors"
@@ -151,9 +252,14 @@
 
             <!-- Right Column: Categories -->
             <div>
-              <h3 class="heading-05-600 text-white mb-4">Categories</h3>
+              <h3 class="heading-05-600 text-white mb-4">
+                Categories
+              </h3>
               <ul class="flex flex-col gap-3">
-                <li v-for="category in categories" :key="category.label">
+                <li
+                  v-for="category in categories"
+                  :key="category.label"
+                >
                   <NuxtLink
                     :to="category.to"
                     class="body-medium text-gray-300 hover:text-primary-300 transition-colors"
@@ -200,7 +306,10 @@
               <div
                 class="flex items-center gap-2 bg-primary-700 px-3 py-2 rounded"
               >
-                <UIcon name="i-lucide-lock" class="size-4 text-white" />
+                <UIcon
+                  name="i-lucide-lock"
+                  class="size-4 text-white"
+                />
                 <span class="body-small text-white">Secure Payment</span>
               </div>
             </div>
@@ -210,87 +319,6 @@
     </template>
   </UFooter>
 </template>
-
-<script setup lang="ts">
-interface FooterLink {
-  label: string;
-  to: string;
-}
-
-// Footer UI customization
-const footerUi = {};
-
-// Newsletter
-const email = ref('');
-
-// Social Media Links
-const socialLinks = [
-  {
-    name: 'Facebook',
-    icon: 'i-simple-icons-facebook',
-    url: 'https://facebook.com',
-  },
-  {
-    name: 'Twitter',
-    icon: 'i-simple-icons-twitter',
-    url: 'https://twitter.com',
-  },
-  {
-    name: 'Pinterest',
-    icon: 'i-simple-icons-pinterest',
-    url: 'https://pinterest.com',
-  },
-  {
-    name: 'Instagram',
-    icon: 'i-simple-icons-instagram',
-    url: 'https://instagram.com',
-  },
-];
-
-// My Account Links
-const myAccountLinks = ref<FooterLink[]>([
-  { label: 'My Account', to: '/account' },
-  { label: 'Order History', to: '/account/orders' },
-  { label: 'Shoping Cart', to: '/cart' },
-  { label: 'Wishlist', to: '/wishlist' },
-]);
-
-// Helps Links
-const helpsLinks = ref<FooterLink[]>([
-  { label: 'Contact', to: '/contact' },
-  { label: 'FAQ', to: '/faqs' },
-  { label: 'Terms & Condition', to: '/terms' },
-  { label: 'Privacy Policy', to: '/privacy' },
-]);
-
-// Proxy Links
-const proxyLinks = ref<FooterLink[]>([
-  { label: 'About', to: '/about' },
-  { label: 'Shop', to: '/shop' },
-  { label: 'Product', to: '/products' },
-  { label: 'Track Order', to: '/track-order' },
-]);
-
-// Categories
-const categories = ref<FooterLink[]>([
-  { label: 'Fruit & Vegetables', to: '/categories/fruits-vegetables' },
-  { label: 'Meat & Fish', to: '/categories/meat-fish' },
-  { label: 'Bread & Bakery', to: '/categories/bread-bakery' },
-  { label: 'Beauty & Health', to: '/categories/beauty-health' },
-]);
-
-// Current Year
-const currentYear = new Date().getFullYear();
-
-// Subscribe handler
-function handleSubscribe() {
-  if (email.value.trim()) {
-    console.log('Subscribing:', email.value);
-    // Implement newsletter subscription logic here
-    email.value = '';
-  }
-}
-</script>
 
 <style scoped>
 /* Footer specific styles if needed */

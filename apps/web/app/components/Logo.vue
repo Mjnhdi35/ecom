@@ -1,3 +1,102 @@
+<script setup lang="ts">
+// Component name must be multi-word for Vue linting
+defineOptions({
+  name: 'AppLogo',
+})
+
+interface Props {
+  /**
+   * Link destination
+   * @default '/'
+   */
+  to?: string
+  /**
+   * Show brand text
+   * @default true
+   */
+  showText?: boolean
+  /**
+   * Logo size variant
+   * @default 'md'
+   */
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  /**
+   * Custom text color (hex code)
+   * @default '#1A4314'
+   */
+  textColor?: string
+  /**
+   * Custom brand name
+   * @default 'Agriculture'
+   */
+  brandName?: string
+  /**
+   * Custom aria label
+   */
+  ariaLabel?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  to: '/',
+  showText: true,
+  size: 'md',
+  textColor: '#1A4314',
+  brandName: 'Agriculture',
+  ariaLabel: undefined,
+})
+
+// Logo image path
+const logoImage = '/assets/images/plant-logo.png'
+
+// Size classes for icon
+const iconSizeClasses = computed(() => {
+  const sizes = {
+    sm: 'size-6',
+    md: 'size-8',
+    lg: 'size-10',
+    xl: 'size-12',
+  }
+  return sizes[props.size]
+})
+
+// Size classes for text
+const textSizeClasses = computed(() => {
+  const sizes = {
+    sm: 'text-base', // 16px
+    md: 'text-lg', // 18px
+    lg: 'text-xl', // 20px
+    xl: 'text-2xl', // 24px
+  }
+  return sizes[props.size]
+})
+
+// Size classes for container
+const sizeClasses = computed(() => {
+  const sizes = {
+    sm: '',
+    md: '',
+    lg: '',
+    xl: '',
+  }
+  return sizes[props.size]
+})
+
+// Icon dimensions for img tag
+const iconWidth = computed(() => {
+  const sizes = {
+    sm: 24,
+    md: 32,
+    lg: 40,
+    xl: 48,
+  }
+  return sizes[props.size]
+})
+
+const iconHeight = computed(() => {
+  return iconWidth.value
+})
+</script>
+
 <template>
   <NuxtLink
     :to="to"
@@ -6,13 +105,20 @@
     :aria-label="ariaLabel || 'Agriculture - Go to homepage'"
   >
     <!-- Logo Icon -->
-    <div class="logo-icon shrink-0" :class="iconSizeClasses">
-      <img
+    <div
+      class="logo-icon shrink-0"
+      :class="iconSizeClasses"
+    >
+      <NuxtImg
         :src="logoImage"
         :alt="`${brandName} logo`"
         class="w-full h-full object-contain"
         :width="iconWidth"
         :height="iconHeight"
+        preset="logo"
+        loading="eager"
+        format="png"
+        quality="90"
       />
     </div>
 
@@ -27,100 +133,6 @@
     </span>
   </NuxtLink>
 </template>
-
-<script setup lang="ts">
-interface Props {
-  /**
-   * Link destination
-   * @default '/'
-   */
-  to?: string;
-  /**
-   * Show brand text
-   * @default true
-   */
-  showText?: boolean;
-  /**
-   * Logo size variant
-   * @default 'md'
-   */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  /**
-   * Custom text color (hex code)
-   * @default '#1A4314'
-   */
-  textColor?: string;
-  /**
-   * Custom brand name
-   * @default 'Agriculture'
-   */
-  brandName?: string;
-  /**
-   * Custom aria label
-   */
-  ariaLabel?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  to: '/',
-  showText: true,
-  size: 'md',
-  textColor: '#1A4314',
-  brandName: 'Agriculture',
-  ariaLabel: undefined,
-});
-
-// Logo image path
-const logoImage = '/assets/images/plant-logo.png';
-
-// Size classes for icon
-const iconSizeClasses = computed(() => {
-  const sizes = {
-    sm: 'size-6',
-    md: 'size-8',
-    lg: 'size-10',
-    xl: 'size-12',
-  };
-  return sizes[props.size];
-});
-
-// Size classes for text
-const textSizeClasses = computed(() => {
-  const sizes = {
-    sm: 'text-base', // 16px
-    md: 'text-lg', // 18px
-    lg: 'text-xl', // 20px
-    xl: 'text-2xl', // 24px
-  };
-  return sizes[props.size];
-});
-
-// Size classes for container
-const sizeClasses = computed(() => {
-  const sizes = {
-    sm: '',
-    md: '',
-    lg: '',
-    xl: '',
-  };
-  return sizes[props.size];
-});
-
-// Icon dimensions for img tag
-const iconWidth = computed(() => {
-  const sizes = {
-    sm: 24,
-    md: 32,
-    lg: 40,
-    xl: 48,
-  };
-  return sizes[props.size];
-});
-
-const iconHeight = computed(() => {
-  return iconWidth.value;
-});
-</script>
 
 <style scoped>
 .logo {

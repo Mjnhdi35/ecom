@@ -97,12 +97,13 @@ export default defineAppConfig({
       slots: {
         root: 'bg-white sticky top-0 z-50',
         container:
-          'flex items-center justify-between gap-2 sm:gap-4 border-b border-gray-200',
+          'flex items-center justify-between gap-2 sm:gap-4 py-3 sm:py-4 border-b border-gray-200',
         left: 'shrink-0',
         center: 'flex-1 max-w-2xl mx-auto hidden lg:flex',
         right: 'flex items-center gap-2 lg:gap-4 shrink-0',
         top: 'bg-white border-b border-gray-200',
-        bottom: 'bg-gray-900',
+        bottom: 'hidden lg:block bg-gray-900',
+        body: 'lg:hidden',
       },
     },
 
@@ -125,4 +126,4 @@ export default defineAppConfig({
       base: 'w-full max-w-[1920px] mx-auto px-6 sm:px-8 lg:px-[300px]',
     },
   },
-});
+})
